@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Postaw na milion</title>
+    <meta name="description" content="Game">
+    <meta name="keywords" content="game, postawnamilion">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome-1">
+    <meta name="author" content="Kamil Zasada">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body onload="categoryDraw()">
+    <div id="money"></div>
+
+    <div id="questionNumber">Pytanie 1</div>
+    <div class="choose_category">
+        <input onclick = "questionDraw(value)" type="button" id="category1" class="category_button"></input>
+        <input onclick = "questionDraw(value)" type="button" id="category2" class="category_button"></input>
+    </div>
+    <p id=""></p>
+    <div id="question"></div>
+    <div class = "answers">
+                
+        <div id="answer1">
+            <input onclick="addEverything('answer1')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
+            <input onclick="take50k('answer1')"type="button" value="-">
+            <input id="money1" type="button" value="0">
+            <input onclick = "add50k('answer1')"type="button" value="+">
+            <div class="answer"></div>
+        </div>
+        <div id="answer2">
+            <input onclick="addEverything('answer2')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
+            <input onclick="take50k('answer2')" type="button" value="-">
+            <input id="money2" type="button" value="0">
+            <input onclick = "add50k('answer2')"type="button" value="+">
+            <div class="answer"></div>
+        </div>
+        <div id="answer3">
+            <input onclick="addEverything('answer3')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
+            <input onclick="take50k('answer3')" type="button" value="-">
+            <input id="money3" type="button" value="0">
+            <input onclick = "add50k('answer3')"type="button" value="+">
+            <div class="answer"></div>
+        </div>
+        <div id="answer4">
+            <input onclick="addEverything('answer4')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
+            <input onclick="take50k('answer4')" type="button" value="-">
+            <input id="money4" type="button" value="0">
+            <input onclick = "add50k('answer4')"type="button" value="+">
+            <div class="answer"></div>
+        </div>
+</div>
+
+<input onclick="check()" id="checkanswer" type="button" value="Sprawdź odpowiedź">
+<dic id="aaa"></dic>
+
+
+    <script src="js/database.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
