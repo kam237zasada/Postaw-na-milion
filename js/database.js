@@ -114,7 +114,10 @@ categories[7].push(pytanie1Zwierzeta, pytanie2Zwierzeta, pytanie3Zwierzeta, pyta
         number2 = Math.floor(Math.random()*categories.length);
     }
     document.getElementById("category1").value = categories[number1][0];
-    document.getElementById("category2").value = categories[number2][0];        // wypisz nazwy kategorii
+    document.getElementById("category2").value = categories[number2][0];       // wypisz nazwy kategorii
+    document.getElementById("category1").style.opacity = 1;    
+    document.getElementById("category2").style.opacity = 1;           // włączenie widoczności buttonów z kategoriami
+
 }
 
 //obiekt wykorzystywany do przypisania aktualnej poprawnej odpowiedzi
@@ -158,6 +161,7 @@ function questionDraw(categoryName) {  //przekazywana jest nazwa kategorii, któ
                 document.getElementsByClassName("answer")[1].innerHTML = b;
                 document.getElementsByClassName("answer")[2].innerHTML = c;
                 document.getElementsByClassName("answer")[3].innerHTML = d;
+                categories[1].splice(questionnumber, 1);
 break;
         case "Najstarszy":
 
@@ -175,6 +179,7 @@ break;
                 document.getElementsByClassName("answer")[1].innerHTML = b;
                 document.getElementsByClassName("answer")[2].innerHTML = c;
                 document.getElementsByClassName("answer")[3].innerHTML = d;
+                categories[2].splice(questionnumber, 1);
 break;
     
         case "Film":
@@ -193,6 +198,7 @@ break;
                 document.getElementsByClassName("answer")[1].innerHTML = b;
                 document.getElementsByClassName("answer")[2].innerHTML = c;
                 document.getElementsByClassName("answer")[3].innerHTML = d;
+                categories[3].splice(questionnumber, 1);
 break;
         case "Informatyka":
 
@@ -210,6 +216,7 @@ break;
                 document.getElementsByClassName("answer")[1].innerHTML = b;
                 document.getElementsByClassName("answer")[2].innerHTML = c;
                 document.getElementsByClassName("answer")[3].innerHTML = d;
+                categories[4].splice(questionnumber, 1);
 break;
         case "Muzyka":
 
@@ -227,6 +234,7 @@ break;
                 document.getElementsByClassName("answer")[1].innerHTML = b;
                 document.getElementsByClassName("answer")[2].innerHTML = c;
                 document.getElementsByClassName("answer")[3].innerHTML = d;
+                categories[5].splice(questionnumber, 1);
 break;
             case "Sport":
 
@@ -244,6 +252,7 @@ break;
                 document.getElementsByClassName("answer")[1].innerHTML = b;
                 document.getElementsByClassName("answer")[2].innerHTML = c;
                 document.getElementsByClassName("answer")[3].innerHTML = d;
+                categories[6].splice(questionnumber, 1);
 break;
                 case "Zwierzęta":
 
@@ -261,16 +270,21 @@ break;
                 document.getElementsByClassName("answer")[1].innerHTML = b;
                 document.getElementsByClassName("answer")[2].innerHTML = c;
                 document.getElementsByClassName("answer")[3].innerHTML = d;
+                categories[7].splice(questionnumber, 1);
         break;
-        
-        
-            document.getElementsByClassName("choose_category")[0];                            // ustawienie znikania przxycisków kategorii w celu uniknięcią wielokrotnego losowania przez gracza czyli oszustwa, jeszcze niegotowe
-            document.getElementsByClassName("category_button")[0].style.opacity = "0";
-            document.getElementsByClassName("category_button")[1].style.opacity = "0";
-            default:
-                ;
+
 
     }
+
+            document.getElementById("questionframe").style.opacity="1";
+            document.getElementsByClassName("choose_category")[0];                            // ustawienie znikania przxycisków kategorii w celu uniknięcią wielokrotnego losowania przez gracza czyli oszustwa, jeszcze niegotowe
+            document.getElementsByClassName("category_button")[0].style.opacity = "0";
+            document.getElementsByClassName("category_button")[0].value = "";                 // oprócz znikania, trzeba usunąć wartość
+            document.getElementsByClassName("category_button")[1].style.opacity = "0";
+            document.getElementsByClassName("category_button")[1].value = "";
+
+
+
 }
 
 // funkcja sprawdzająca czy spełnione zostały reguły
@@ -286,6 +300,7 @@ function check() {
     else if (emptychecker === false) {alert("Conajmniej jedna zapadnia musi być pusta");} // jeżeli emptychecker jest równy fałsz, oznacza, że nie ma pustej zapadni, wyświetlenie błędu
      else checkCorrect(); // jeżeli wszystko okej, sprawdzamy czy odpowiedź jest prawidłowa
 }
+
 //funkcja do sprawdzania poprawności odpowiedzi
 function checkCorrect() {
      var a = Number(document.getElementById("money1").value);     //zamiana wartości przy każdej odpoweidzi ze stringa na liczbę i przypisanie jej do zmiennej
@@ -314,13 +329,15 @@ function checkCorrect() {
                 document.getElementById("money").innerHTML = actualmoney;
                }
 
+               alert(`Prawidłowa odpowiedź to ${Checker.correctAnswer}\nDo następnego pytania przechodzi ${player.money}`); // wyświetlenie alertu z poprawną odpowiedzią oraz kwotą jaka przechodzi do kolejnego etapu
+
                 // jeżeli po pytaniu zostaje 0 zł, to koniec gry
                if (player.money == 0) {    
                    location.assign("lose.html");
                }
                // jeżeli 7 pytanie, to koniec gry
-               if (question.number === 7) {
-                   location.assign("win.html");
+               if (question.number === 2) {
+                location.assign("win.html");
                }
          nextQuestion();
 }
@@ -333,10 +350,36 @@ function nextQuestion() {
      document.getElementById("money2").value = 0;
      document.getElementById("money3").value = 0;
      document.getElementById("money4").value = 0;         // ustawienie 0zł do każdej zapadni
+
+     document.getElementById("question").innerHTML = "";  // usunięcie danych z pytania
+     document.getElementsByClassName("answers")[1];
+        document.getElementsByClassName("answer")[0].innerHTML = "";
+        document.getElementsByClassName("answer")[1].innerHTML = "";
+        document.getElementsByClassName("answer")[2].innerHTML = "";
+        document.getElementsByClassName("answer")[3].innerHTML = "";   // usunięcie danych z odpowiedzi
      document.getElementById("questionNumber").innerHTML = `Pytanie ${a}`;     // zmiana numeru pytania, który się wyświetla do góry
+     document.getElementById("questionframe").style.opacity="0";  //ponowne zniknięcie ramki z pytaniem i odpowiedziami
+
      categoryDraw();          // ponowne losowanie kategorii
 
 }
+
 function printWin() {
-    document.getElementById("win").innerHTML = ` Brawo! Wygrałeś ${player.money} w Postaw na Milion`;
+    var winmoney = player.money;
+    document.getElementById("win").innerHTML = `Brawo! Wygrałeś ${winmoney} w Postaw na Milion`;
+    localStorage.setItem('myElement', JSON.stringify(player.name));
+
+    saveResult(player);
+
+
 }
+
+
+function saveResult(element) {
+const resultsTable = [];
+resultsTable.push(element);
+console.log(resultsTable);
+}
+
+
+

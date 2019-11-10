@@ -17,42 +17,43 @@
         <input onclick = "questionDraw(value)" type="button" id="category1" class="category_button"></input>
         <input onclick = "questionDraw(value)" type="button" id="category2" class="category_button"></input>
     </div>
-    <p id=""></p>
+    <div id="questionframe">
     <div id="question"></div>
     <div class = "answers">
                 
-        <div id="answer1">
+        <div class="answerframe" id="answer1">
             <input onclick="addEverything('answer1')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
             <input onclick="take50k('answer1')"type="button" value="-">
-            <input id="money1" type="button" value="0">
             <input onclick = "add50k('answer1')"type="button" value="+">
-            <div class="answer"></div>
+            <input class="money" id="money1" type="button" value="0">
+            <div class="answer">
+            </div>
         </div>
-        <div id="answer2">
+        <div class="answerframe" id="answer2">
             <input onclick="addEverything('answer2')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
             <input onclick="take50k('answer2')" type="button" value="-">
-            <input id="money2" type="button" value="0">
             <input onclick = "add50k('answer2')"type="button" value="+">
+            <input class="money" id="money2" type="button" value="0">
             <div class="answer"></div>
         </div>
-        <div id="answer3">
+        <div class="answerframe" id="answer3">
             <input onclick="addEverything('answer3')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
             <input onclick="take50k('answer3')" type="button" value="-">
-            <input id="money3" type="button" value="0">
             <input onclick = "add50k('answer3')"type="button" value="+">
+            <input class="money" id="money3" type="button" value="0">
             <div class="answer"></div>
         </div>
-        <div id="answer4">
+        <div class="answerframe" id="answer4">
             <input onclick="addEverything('answer4')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
             <input onclick="take50k('answer4')" type="button" value="-">
-            <input id="money4" type="button" value="0">
             <input onclick = "add50k('answer4')"type="button" value="+">
+            <input class = "money" id="money4" type="button" value="0">
             <div class="answer"></div>
         </div>
-</div>
+    </div>
 
-<input onclick="check()" id="checkanswer" type="button" value="Sprawdź odpowiedź">
-<dic id="aaa"></dic>
+<input class="checkbutton" onclick="check()" id="checkanswer" type="button" value="Sprawdź odpowiedź">
+</div>
 
 
     <script src="js/database.js"></script>
