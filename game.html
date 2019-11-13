@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/game.css">
 </head>
 <body onload="categoryDraw()">
+    <div id="player_name"></div>
+
     <div id="money"></div>
 
     <div id="questionNumber">Pytanie 1</div>
@@ -22,29 +24,28 @@
     <div class = "answers">
                 
         <div class="answerframe" id="answer1">
-            <input onclick="addEverything('answer1')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
+            <input onclick="addEverything('answer1')" class="betEverything" type="button" value="POSTAW WSZYSTKO">
             <input onclick="take50k('answer1')"type="button" value="-">
             <input onclick = "add50k('answer1')"type="button" value="+">
             <input class="money" id="money1" type="button" value="0">
-            <div class="answer">
-            </div>
+            <div class="answer"></div>
         </div>
         <div class="answerframe" id="answer2">
-            <input onclick="addEverything('answer2')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
+            <input onclick="addEverything('answer2')" class="betEverything" type="button" value="POSTAW WSZYSTKO">
             <input onclick="take50k('answer2')" type="button" value="-">
             <input onclick = "add50k('answer2')"type="button" value="+">
             <input class="money" id="money2" type="button" value="0">
             <div class="answer"></div>
         </div>
         <div class="answerframe" id="answer3">
-            <input onclick="addEverything('answer3')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
+            <input onclick="addEverything('answer3')" class="betEverything" type="button" value="POSTAW WSZYSTKO">
             <input onclick="take50k('answer3')" type="button" value="-">
             <input onclick = "add50k('answer3')"type="button" value="+">
             <input class="money" id="money3" type="button" value="0">
             <div class="answer"></div>
         </div>
         <div class="answerframe" id="answer4">
-            <input onclick="addEverything('answer4')" class="postawwszystko" type="button" value="POSTAW WSZYSTKO">
+            <input onclick="addEverything('answer4')" class="betEverything" type="button" value="POSTAW WSZYSTKO">
             <input onclick="take50k('answer4')" type="button" value="-">
             <input onclick = "add50k('answer4')"type="button" value="+">
             <input class = "money" id="money4" type="button" value="0">
@@ -56,7 +57,7 @@
 </div>
 
 
-    <script src="js/database.js"></script>
+ 
     <script src="js/script.js"></script>
 
 </body>
