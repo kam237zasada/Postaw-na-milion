@@ -13,18 +13,15 @@ document.getElementById("money").innerHTML = `${money} zł`;
 function startGame(name) {                  // funkcja która pobiera wpisane w formularzu imię
 if (name) {
 document.getElementById("hello").innerHTML = `Cześć ${name}, czy jesteś gotowy na szaloną rozgrywkę? Masz w tej chwili ${player.money} zł na swoim koncie, jednak przed Tobą aż 7 pytań!`;
-document.getElementById("start").style.opacity = "1";                   // jeżeli zostało cokolwiek wpisane, to przechodizmy dalej
+document.getElementById("start").style.display = "initial";                   // jeżeli zostało cokolwiek wpisane, to przechodizmy dalej
+player.name = name;
+sessionStorage.setItem("playerName", `${player.name}`);
 
 }
 else {                                                                       // jeżeli nie, to wy świetl błąd
     document.getElementById("hello").innerHTML = "You must write your name!";
     document.getElementById("start").style.opacity = "0";
-}
-
-}
-
-
-
+}}
 
 // funkcja postaw wszystko
 function addEverything(answerNumber){
@@ -36,7 +33,7 @@ function addEverything(answerNumber){
         if (document.getElementById("money4").value != 0) {player.money += Number(document.getElementById("money4").value); document.getElementById("money4").value = 0; }   //jeżeli przy odpowiedzi jest kasa, to dodaj ją do kasy ogólnej i zarazem do odowiedzi przypisz 0 zł
     document.getElementById("money1").value = player.money; //przypisz całą kasę gracza do tej odpowiedzi (w tym przypadku 1)
     player.money = 0;                                 // jednocześnie teraz dostępna kasa gracza wynosi 0zł
-    var actualmoney = player.money;                       //przypisanie tego do zmiennej 
+    let actualmoney = player.money;                       //przypisanie tego do zmiennej 
     document.getElementById("money").innerHTML = actualmoney; 
     }  //wyświetlenie tego w boxie z kasą
         //dalej to samo dla reszty odpowiedzi
@@ -47,7 +44,7 @@ function addEverything(answerNumber){
         if (document.getElementById("money4").value != 0) {player.money += Number(document.getElementById("money4").value); document.getElementById("money4").value = 0; }                        
         document.getElementById("money2").value = player.money;
         player.money = 0;
-        var actualmoney = player.money;
+        let actualmoney = player.money;
         document.getElementById("money").innerHTML = actualmoney;
     }
             else if (answerNumber === 'answer3') {
@@ -57,7 +54,7 @@ function addEverything(answerNumber){
                 if (document.getElementById("money4").value != 0) {player.money += Number(document.getElementById("money4").value); document.getElementById("money4").value = 0; }   
             document.getElementById("money3").value = player.money;
             player.money = 0;
-            var actualmoney = player.money;
+            let actualmoney = player.money;
             document.getElementById("money").innerHTML = actualmoney;
             }
                 else if (answerNumber === 'answer4') {
@@ -67,7 +64,7 @@ function addEverything(answerNumber){
                     if (document.getElementById("money4").value != 0) {player.money += Number(document.getElementById("money4").value); document.getElementById("money4").value = 0; }   
                             document.getElementById("money4").value = player.money;
                             player.money = 0;
-                            var actualmoney = player.money;
+                            let actualmoney = player.money;
                             document.getElementById("money").innerHTML = actualmoney;
                             }
                 }
@@ -78,42 +75,41 @@ function add50k(answerNumber){
     if (player.money > 0) {                                 // jeśli gracz ma więcej niż 0 zł, to dodaj 50 000
     if (answerNumber === "answer1") {                     
 
-        var kasa = Number(document.getElementById("money1").value);    //zamiana stringa przechowującego kasę gracza na liczbę i przypisanie tego do zmiennej
-        var obecnakasa = kasa + 50000;                                 //zwiększenie wartości przy tej odpowiedzi o 50000
+        let kasa = Number(document.getElementById("money1").value);    //zamiana stringa przechowującego kasę gracza na liczbę i przypisanie tego do zmiennej
+        let obecnakasa = kasa + 50000;                                 //zwiększenie wartości przy tej odpowiedzi o 50000
         document.getElementById("money1").value = obecnakasa;
         player.money -= 50000;                                       //jednoczesne zabranie 50 000 z kasy gracza
-        var actualmoney = player.money;
+        let actualmoney = player.money;
         document.getElementById("money").innerHTML = actualmoney;      // i przypisanie tego do boxa wyświetlającego aktualny stan konta
     }
     else if (answerNumber === "answer2") {                             // dalej to samo dla pozostałych odpowiedzi
 
-        var kasa = Number(document.getElementById("money2").value);
-        var obecnakasa = kasa + 50000;
+        let kasa = Number(document.getElementById("money2").value);
+        let obecnakasa = kasa + 50000;
         document.getElementById("money2").value = obecnakasa;
         player.money -= 50000;
-        var actualmoney = player.money;
+        let actualmoney = player.money;
         document.getElementById("money").innerHTML = actualmoney;
     }
     else if (answerNumber === "answer3") {
 
-        var kasa = Number(document.getElementById("money3").value);
-        var obecnakasa = kasa + 50000;
+        let kasa = Number(document.getElementById("money3").value);
+        let obecnakasa = kasa + 50000;
         document.getElementById("money3").value = obecnakasa;
         player.money -= 50000;
-        var actualmoney = player.money;
+        let actualmoney = player.money;
         document.getElementById("money").innerHTML = actualmoney;
     }
     else if (answerNumber === "answer4") {
 
-        var kasa = Number(document.getElementById("money4").value);
-        var obecnakasa = kasa + 50000;
+        let kasa = Number(document.getElementById("money4").value);
+        let obecnakasa = kasa + 50000;
         document.getElementById("money4").value = obecnakasa;
         player.money -= 50000;
-        var actualmoney = player.money;
+        let actualmoney = player.money;
         document.getElementById("money").innerHTML = actualmoney;
     }
-}
-}
+}}
 
 // funkcja zabierz 50 000
 function take50k(answerNumber){
@@ -121,45 +117,45 @@ function take50k(answerNumber){
                                     
     if (answerNumber === "answer1") {                     
 
-        var kasa = Number(document.getElementById("money1").value);    //zamiana stringa przechowującego kasę gracza na liczbę i przypisanie tego do zmiennej
+        let kasa = Number(document.getElementById("money1").value);    //zamiana stringa przechowującego kasę gracza na liczbę i przypisanie tego do zmiennej
         if (kasa > 0) {                                                //jeżeli kasa przy odpowiedzi jest większa od 0 zł
-        var obecnakasa = kasa - 50000;                                 //zmniejszenie wartości przy tej odpowiedzi o 50000
+        let obecnakasa = kasa - 50000;                                 //zmniejszenie wartości przy tej odpowiedzi o 50000
         document.getElementById("money1").value = obecnakasa;
         player.money += 50000;                                       //jednoczesne doadnie 50 000 z kasy gracza
-        var actualmoney = player.money;
+        let actualmoney = player.money;
         document.getElementById("money").innerHTML = actualmoney; 
         }     // i przypisanie tego do boxa wyświetlającego aktualny stan konta
     }
     else if (answerNumber === "answer2") {                             // dalej to samo dla pozostałych odpowiedzi
 
-        var kasa = Number(document.getElementById("money2").value);
+        let kasa = Number(document.getElementById("money2").value);
         if (kasa > 0) {
-        var obecnakasa = kasa - 50000;
+        let obecnakasa = kasa - 50000;
         document.getElementById("money2").value = obecnakasa;
         player.money += 50000;
-        var actualmoney = player.money;
+        let actualmoney = player.money;
         document.getElementById("money").innerHTML = actualmoney;
         }
     }
     else if (answerNumber === "answer3") {
 
-        var kasa = Number(document.getElementById("money3").value);
+        let kasa = Number(document.getElementById("money3").value);
         if (kasa > 0) {
-        var obecnakasa = kasa - 50000;
+        let obecnakasa = kasa - 50000;
         document.getElementById("money3").value = obecnakasa;
         player.money += 50000;
-        var actualmoney = player.money;
+        let actualmoney = player.money;
         document.getElementById("money").innerHTML = actualmoney;
         }
     }
     else if (answerNumber === "answer4") {
 
-        var kasa = Number(document.getElementById("money4").value);
+        let kasa = Number(document.getElementById("money4").value);
         if (kasa > 0) {
-        var obecnakasa = kasa - 50000;
+        let obecnakasa = kasa - 50000;
         document.getElementById("money4").value = obecnakasa;
         player.money += 50000;
-        var actualmoney = player.money;
+        let actualmoney = player.money;
         document.getElementById("money").innerHTML = actualmoney;
         }
     }
@@ -270,12 +266,11 @@ const pytanie7Zwierzeta = new Question ("Dzieckiem jakiego dorosłego osobnika j
 categories[7].push(pytanie1Zwierzeta, pytanie2Zwierzeta, pytanie3Zwierzeta, pytanie4Zwierzeta, pytanie5Zwierzeta, pytanie6Zwierzeta, pytanie7Zwierzeta);
 
 
-
-
 //losowanie kategorii
  function categoryDraw() {
-    var number1 = Math.floor(Math.random()*categories.length); //losowanie liczby losowej, zakres od 0 do ilości elementów w tablicy categories
-    var number2 = Math.floor(Math.random()*categories.length);
+    document.getElementById('player_name').innerHTML = sessionStorage.getItem("playerName");
+    let number1 = Math.floor(Math.random()*categories.length); //losowanie liczby losowej, zakres od 0 do ilości elementów w tablicy categories
+    let number2 = Math.floor(Math.random()*categories.length);
 
      while (number1 === number2) {                         //losuj tak długo, aż będą dwie różne liczby
         number2 = Math.floor(Math.random()*categories.length);
@@ -284,25 +279,24 @@ categories[7].push(pytanie1Zwierzeta, pytanie2Zwierzeta, pytanie3Zwierzeta, pyta
     document.getElementById("category2").value = categories[number2][0];       // wypisz nazwy kategorii
     document.getElementById("category1").style.opacity = 1;    
     document.getElementById("category2").style.opacity = 1;           // włączenie widoczności buttonów z kategoriami
-
 }
 
 //obiekt wykorzystywany do przypisania aktualnej poprawnej odpowiedzi
-const Checker = {
-    correctAnswer: ""
-
-}
+const Checker = {correctAnswer: ""}
 //losowanie pytania
 function questionDraw(categoryName) {  //przekazywana jest nazwa kategorii, którą wybrano
+    let questionnumber;
+    let a, b, c, d;
+    
     switch(categoryName) {    //poprzez wykorzystanie switcha wybieramy kategorię
         case "Historia":
-            var questionnumber = Math.floor(Math.random()*(categories[0].length-1)) +1;     // losowanie liczby losowej jako numeru pytania, zakres to od 1 do długości tablicy (od 1 ponieważ element [0] to nazwa kategorii), indeks [0] ponieważ kategoria Historia jest jako element [0] w tablicy categories
+            questionnumber = Math.floor(Math.random()*(categories[0].length-1)) +1;     // losowanie liczby losowej jako numeru pytania, zakres to od 1 do długości tablicy (od 1 ponieważ element [0] to nazwa kategorii), indeks [0] ponieważ kategoria Historia jest jako element [0] w tablicy categories
             Checker.correctAnswer = categories[0][questionnumber].correct; //zapisanie aktualnej dobrej odpowiedzi do obiektu Checker
             document.getElementById("question").innerHTML = categories[0][questionnumber].question;
-            var a = categories[0][questionnumber].answer1;
-            var b = categories[0][questionnumber].answer2;
-            var c = categories[0][questionnumber].answer3;
-            var d = categories[0][questionnumber].answer4;   //przypisanie odpowiedzi, które są zapisane w obiekcie pytania stworzonym przy pomocy konstruktora "Question", do zmiennych
+            a = categories[0][questionnumber].answer1;
+            b = categories[0][questionnumber].answer2;
+            c = categories[0][questionnumber].answer3;
+            d = categories[0][questionnumber].answer4;   //przypisanie odpowiedzi, które są zapisane w obiekcie pytania stworzonym przy pomocy konstruktora "Question", do zmiennych
             actualQuestionAnswers = [a, b, c, d]; //zapisanie aktualnych odpowiedzi do tablicy
 
             document.getElementsByClassName("answers")[1];
@@ -314,13 +308,13 @@ function questionDraw(categoryName) {  //przekazywana jest nazwa kategorii, któ
         break;
         //to samo dla każdej kategorii, bardzo ważny indeks przy tablicy categories
         case "Kraje Świata":
-                var questionnumber = Math.floor(Math.random()*(categories[1].length-1)) +1;
+                questionnumber = Math.floor(Math.random()*(categories[1].length-1)) +1;
                 Checker.correctAnswer = categories[1][questionnumber].correct; //zapisanie aktualnej dobrej odpowiedzi do obiektu Checker
                 document.getElementById("question").innerHTML = categories[1][questionnumber].question;
-                var a = categories[1][questionnumber].answer1;
-                var b = categories[1][questionnumber].answer2;
-                var c = categories[1][questionnumber].answer3;
-                var d = categories[1][questionnumber].answer4;
+                 a = categories[1][questionnumber].answer1;
+                 b = categories[1][questionnumber].answer2;
+                 c = categories[1][questionnumber].answer3;
+                 d = categories[1][questionnumber].answer4;
                 actualQuestionAnswers = [a, b, c, d];
     
                 document.getElementsByClassName("answers")[1];
@@ -332,13 +326,13 @@ function questionDraw(categoryName) {  //przekazywana jest nazwa kategorii, któ
 break;
         case "Najstarszy":
 
-                var questionnumber = Math.floor(Math.random()*(categories[2].length-1)) +1;
+                 questionnumber = Math.floor(Math.random()*(categories[2].length-1)) +1;
                 Checker.correctAnswer = categories[2][questionnumber].correct; //zapisanie aktualnej dobrej odpowiedzi do obiektu Checker
                 document.getElementById("question").innerHTML = categories[2][questionnumber].question;
-                var a = categories[2][questionnumber].answer1;
-                var b = categories[2][questionnumber].answer2;
-                var c = categories[2][questionnumber].answer3;
-                var d = categories[2][questionnumber].answer4;
+                 a = categories[2][questionnumber].answer1;
+                 b = categories[2][questionnumber].answer2;
+                 c = categories[2][questionnumber].answer3;
+                 d = categories[2][questionnumber].answer4;
                 actualQuestionAnswers = [a, b, c, d];
 
                 document.getElementsByClassName("answers")[1];
@@ -351,13 +345,13 @@ break;
     
         case "Film":
 
-                var questionnumber = Math.floor(Math.random()*(categories[3].length-1)) +1;
+                 questionnumber = Math.floor(Math.random()*(categories[3].length-1)) +1;
                 Checker.correctAnswer = categories[3][questionnumber].correct; //zapisanie aktualnej dobrej odpowiedzi do obiektu Checker
                 document.getElementById("question").innerHTML = categories[3][questionnumber].question;
-                var a = categories[3][questionnumber].answer1;
-                var b = categories[3][questionnumber].answer2;
-                var c = categories[3][questionnumber].answer3;
-                var d = categories[3][questionnumber].answer4;
+                 a = categories[3][questionnumber].answer1;
+                 b = categories[3][questionnumber].answer2;
+                 c = categories[3][questionnumber].answer3;
+                 d = categories[3][questionnumber].answer4;
                 actualQuestionAnswers = [a, b, c, d];
 
                 document.getElementsByClassName("answers")[1];
@@ -370,13 +364,13 @@ break;
 break;
         case "Informatyka":
 
-                var questionnumber = Math.floor(Math.random()*(categories[4].length-1)) +1;
+                 questionnumber = Math.floor(Math.random()*(categories[4].length-1)) +1;
                 Checker.correctAnswer = categories[4][questionnumber].correct; //zapisanie aktualnej dobrej odpowiedzi do obiektu Checker
                 document.getElementById("question").innerHTML = categories[4][questionnumber].question;
-                var a = categories[4][questionnumber].answer1;
-                var b = categories[4][questionnumber].answer2;
-                var c = categories[4][questionnumber].answer3;
-                var d = categories[4][questionnumber].answer4;
+                 a = categories[4][questionnumber].answer1;
+                 b = categories[4][questionnumber].answer2;
+                 c = categories[4][questionnumber].answer3;
+                 d = categories[4][questionnumber].answer4;
                 actualQuestionAnswers = [a, b, c, d];
 
                 document.getElementsByClassName("answers")[1];
@@ -388,13 +382,13 @@ break;
 break;
         case "Muzyka":
 
-                var questionnumber = Math.floor(Math.random()*(categories[5].length-1)) +1;
+                 questionnumber = Math.floor(Math.random()*(categories[5].length-1)) +1;
                 Checker.correctAnswer = categories[5][questionnumber].correct; //zapisanie aktualnej dobrej odpowiedzi do obiektu Checker
                 document.getElementById("question").innerHTML = categories[5][questionnumber].question;                        
-                var a = categories[5][questionnumber].answer1;
-                var b = categories[5][questionnumber].answer2;
-                var c = categories[5][questionnumber].answer3;
-                var d = categories[5][questionnumber].answer4;
+                 a = categories[5][questionnumber].answer1;
+                 b = categories[5][questionnumber].answer2;
+                 c = categories[5][questionnumber].answer3;
+                 d = categories[5][questionnumber].answer4;
                 actualQuestionAnswers = [a, b, c, d];
         
                 document.getElementsByClassName("answers")[1];
@@ -406,13 +400,13 @@ break;
 break;
             case "Sport":
 
-                var questionnumber = Math.floor(Math.random()*(categories[6].length-1)) +1;
+                 questionnumber = Math.floor(Math.random()*(categories[6].length-1)) +1;
                 Checker.correctAnswer = categories[6][questionnumber].correct; //zapisanie aktualnej dobrej odpowiedzi do obiektu Checker
                 document.getElementById("question").innerHTML = categories[6][questionnumber].question;
-                var a = categories[6][questionnumber].answer1;
-                var b = categories[6][questionnumber].answer2;
-                var c = categories[6][questionnumber].answer3;
-                var d = categories[6][questionnumber].answer4;
+                 a = categories[6][questionnumber].answer1;
+                 b = categories[6][questionnumber].answer2;
+                 c = categories[6][questionnumber].answer3;
+                 d = categories[6][questionnumber].answer4;
                 actualQuestionAnswers = [a, b, c, d];
         
                 document.getElementsByClassName("answers")[1];
@@ -424,13 +418,13 @@ break;
 break;
                 case "Zwierzęta":
 
-                var questionnumber = Math.floor(Math.random()*(categories[7].length-1)) +1;
+                 questionnumber = Math.floor(Math.random()*(categories[7].length-1)) +1;
                 Checker.correctAnswer = categories[7][questionnumber].correct; //zapisanie aktualnej dobrej odpowiedzi do obiektu Checker
                 document.getElementById("question").innerHTML = categories[7][questionnumber].question;
-                var a = categories[7][questionnumber].answer1;
-                var b = categories[7][questionnumber].answer2;
-                var c = categories[7][questionnumber].answer3;
-                var d = categories[7][questionnumber].answer4;
+                 a = categories[7][questionnumber].answer1;
+                 b = categories[7][questionnumber].answer2;
+                 c = categories[7][questionnumber].answer3;
+                 d = categories[7][questionnumber].answer4;
                 actualQuestionAnswers = [a, b, c, d];
         
                 document.getElementsByClassName("answers")[1];
@@ -440,9 +434,7 @@ break;
                 document.getElementsByClassName("answer")[3].innerHTML = d;
                 categories[7].splice(questionnumber, 1);
         break;
-
-
-    }
+        }
 
             document.getElementById("questionframe").style.opacity="1";
             document.getElementsByClassName("choose_category")[0];                            // ustawienie znikania przxycisków kategorii w celu uniknięcią wielokrotnego losowania przez gracza czyli oszustwa, jeszcze niegotowe
@@ -450,9 +442,6 @@ break;
             document.getElementsByClassName("category_button")[0].value = "";                 // oprócz znikania, trzeba usunąć wartość
             document.getElementsByClassName("category_button")[1].style.opacity = "0";
             document.getElementsByClassName("category_button")[1].value = "";
-
-
-
 }
 
 // funkcja sprawdzająca czy spełnione zostały reguły
@@ -462,7 +451,7 @@ function check() {
     moneyOnAnswer.push(document.getElementById("money2").value);
     moneyOnAnswer.push(document.getElementById("money3").value);
     moneyOnAnswer.push(document.getElementById("money4").value);   //przypisanie każdej z kwot na każdej zapadni do tablicy
-    var emptychecker = moneyOnAnswer.some(function(value) {return value == 0;} );      // wykorzystanie metody .some, żeby sprawdzić czy minimum jedna zapadnia jest bez kasy i zwrocenie wyniku do zmiennej emptychecker
+    let emptychecker = moneyOnAnswer.some(function(value) {return value == 0;} );      // wykorzystanie metody .some, żeby sprawdzić czy minimum jedna zapadnia jest bez kasy i zwrocenie wyniku do zmiennej emptychecker
     if (player.money != 0) {alert("Musisz postawić całą kasę");} // jeżeli kasa gracza nie jest równa 0, to wyświetla komunikat o błędzie
 
     else if (emptychecker === false) {alert("Conajmniej jedna zapadnia musi być pusta");} // jeżeli emptychecker jest równy fałsz, oznacza, że nie ma pustej zapadni, wyświetlenie błędu
@@ -471,29 +460,29 @@ function check() {
 
 //funkcja do sprawdzania poprawności odpowiedzi
 function checkCorrect() {
-     var a = Number(document.getElementById("money1").value);     //zamiana wartości przy każdej odpoweidzi ze stringa na liczbę i przypisanie jej do zmiennej
-     var b = Number(document.getElementById("money2").value);
-     var c = Number(document.getElementById("money3").value);
-     var d = Number(document.getElementById("money4").value);
+     let a = Number(document.getElementById("money1").value);     //zamiana wartości przy każdej odpoweidzi ze stringa na liczbę i przypisanie jej do zmiennej
+     let b = Number(document.getElementById("money2").value);
+     let c = Number(document.getElementById("money3").value);
+     let d = Number(document.getElementById("money4").value);
 
      if (actualQuestionAnswers[0] === Checker.correctAnswer){   //sprawdzanie czy dana odpowiedź jest prawidłowa
         player.money = a;                                       // przypisanie kasy z zapadni (jeżeli odpowiedź prawidłowa) z powrotem do gracza
-        var actualmoney = player.money;                         
+        let actualmoney = player.money;                         
         document.getElementById("money").innerHTML = actualmoney;   // wypisanie tego do góry ekranu
 }           // dalej to samo, musimy sprawdzić każdą odpowiedź pod kątem poprawności
          else if (actualQuestionAnswers[1] === Checker.correctAnswer){
              player.money = b;
-             var actualmoney = player.money;
+             let actualmoney = player.money;
              document.getElementById("money").innerHTML = actualmoney;
             }
             else if (actualQuestionAnswers[2] === Checker.correctAnswer){
                 player.money = c;
-                var actualmoney = player.money;
+                let actualmoney = player.money;
                 document.getElementById("money").innerHTML = actualmoney;
                }
                else if (actualQuestionAnswers[3] === Checker.correctAnswer){
                 player.money = d;
-                var actualmoney = player.money;
+                let actualmoney = player.money;
                 document.getElementById("money").innerHTML = actualmoney;
                }
 
@@ -505,6 +494,7 @@ function checkCorrect() {
                }
                // jeżeli 7 pytanie, to koniec gry
                if (question.number === 7) {
+                   sessionStorage.setItem("money", `${player.money}`)
                 location.assign("win.html");
                }
          nextQuestion();
@@ -513,16 +503,16 @@ function checkCorrect() {
 //funkcja wywoływana gdy gracz odpowie poprawnie na pytanie i nie jest to ostatnie pytanie 
 function nextQuestion() {
      question.number +=1;
-     var a = question.number;    // licznik pytań
+     let a = question.number;    // licznik pytań
      document.getElementById("money1").value = 0;     
      document.getElementById("money2").value = 0;
      document.getElementById("money3").value = 0;
      document.getElementById("money4").value = 0;         // ustawienie 0zł do każdej zapadni
 
      document.getElementById("question").innerHTML = "";  // usunięcie danych z pytania
-     var answers = document.getElementsByClassName("answers");
+     let answers = document.getElementsByClassName("answers");
 
-     for (var i=0; i < answers.length; i++) {
+     for (let i=0; i < answers.length; i++) {
         document.getElementsByClassName("answer")[i].innerHTML = "";        
      }// usunięcie danych z odpowiedzi
        
@@ -536,20 +526,17 @@ function nextQuestion() {
 }
 
 function printWin() {
-    var winmoney = player.money;
-    document.getElementById("win").innerHTML = `Brawo! Wygrałeś ${winmoney} w Postaw na Milion`;
-    localStorage.setItem('myElement', JSON.stringify(player.name));  //local storage, jeszze niedokończone
-
-    saveResult(player);
-
-
+    let winmoney = sessionStorage.getItem("money");
+    let playerName = sessionStorage.getItem("playerName");
+    document.getElementById("win").innerHTML = `Brawo ${playerName}! Wygrałeś ${winmoney} w Postaw na Milion`; 
+    let winnersTable = [];
+    winnersTable.push(localStorage.getItem("winners"));
+    winnersTable.unshift(`${playerName} ${player.money}`);
+    localStorage.setItem("winners", `${winnersTable}`);
 }
 
-
-function saveResult(element) {
-const resultsTable = [];
-resultsTable.push(element);
-console.log(resultsTable);         //funkcja, która ma zapisywać wynik, niedokończona
+function loadResult() {
+    document.getElementById("results").innerHTML = localStorage.getItem("winners");
 }
 
 
