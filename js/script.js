@@ -493,7 +493,7 @@ function checkCorrect() {
                    location.assign("lose.html");
                }
                // jeżeli 7 pytanie, to koniec gry
-               if (question.number === 1) {
+               if (question.number === 7) {
                    sessionStorage.setItem("money", `${player.money}`)  // zapisanie wygranej kasy w pamięci sesji
                 location.assign("win.html"); 
                }
