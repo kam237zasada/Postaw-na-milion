@@ -493,7 +493,7 @@ function checkCorrect() {
                    location.assign("lose.html");
                }
                // jeżeli 7 pytanie, to koniec gry
-               if (question.number === 7) {
+               if (question.number === 1) {
                    sessionStorage.setItem("money", `${player.money}`)  // zapisanie wygranej kasy w pamięci sesji
                 location.assign("win.html"); 
                }
@@ -531,7 +531,7 @@ function printWin() {
     document.getElementById("win").innerHTML = `Brawo ${playerName}! Wygrałeś ${winmoney} w Postaw na Milion`;   // wypisanie na ekranie informacji o wygranej
     let winnersTable = [];
     winnersTable.push(localStorage.getItem("winners"));  // zapisanie w tablicy obecnych zapisanych wyników
-    winnersTable.unshift(`${playerName} ${player.money}`); // wepchnięcie na początek obecnej wygranej
+    winnersTable.unshift(`${playerName} ${winmoney}`); // wepchnięcie na początek obecnej wygranej
     localStorage.setItem("winners", `${winnersTable}`);  // zapisanie w localStorage wyniku
 }
 
