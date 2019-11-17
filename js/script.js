@@ -7,15 +7,15 @@ const question = {
 }                                      // obiekt, który liczy pytania
 
 let money = player.money;
-document.getElementById("money").innerHTML = `${money} zł`;
+document.getElementById("money").innerHTML = `${money} zł`; //wyświetlenie kasy na górze ekranu
 
 
 function startGame(name) {                  // funkcja która pobiera wpisane w formularzu imię
 if (name) {
 document.getElementById("hello").innerHTML = `Cześć ${name}, czy jesteś gotowy na szaloną rozgrywkę? Masz w tej chwili ${player.money} zł na swoim koncie, jednak przed Tobą aż 7 pytań!`;
-document.getElementById("start").style.display = "initial";                   // jeżeli zostało cokolwiek wpisane, to przechodizmy dalej
+document.getElementById("start").style.display = "initial";                   // jeżeli zostało cokolwiek wpisane, to przechodzimy dalej
 player.name = name;
-sessionStorage.setItem("playerName", `${player.name}`);
+sessionStorage.setItem("playerName", `${player.name}`);  // zapisanie imienia w pamięci sesji
 
 }
 else {                                                                       // jeżeli nie, to wy świetl błąd
@@ -494,8 +494,8 @@ function checkCorrect() {
                }
                // jeżeli 7 pytanie, to koniec gry
                if (question.number === 7) {
-                   sessionStorage.setItem("money", `${player.money}`)
-                location.assign("win.html");
+                   sessionStorage.setItem("money", `${player.money}`)  // zapisanie wygranej kasy w pamięci sesji
+                location.assign("win.html"); 
                }
          nextQuestion();
 }
@@ -527,16 +527,16 @@ function nextQuestion() {
 
 function printWin() {
     let winmoney = sessionStorage.getItem("money");
-    let playerName = sessionStorage.getItem("playerName");
-    document.getElementById("win").innerHTML = `Brawo ${playerName}! Wygrałeś ${winmoney} w Postaw na Milion`; 
+    let playerName = sessionStorage.getItem("playerName");    // wyjęcie z pamięci imienia i kasy
+    document.getElementById("win").innerHTML = `Brawo ${playerName}! Wygrałeś ${winmoney} w Postaw na Milion`;   // wypisanie na ekranie informacji o wygranej
     let winnersTable = [];
-    winnersTable.push(localStorage.getItem("winners"));
-    winnersTable.unshift(`${playerName} ${player.money}`);
-    localStorage.setItem("winners", `${winnersTable}`);
+    winnersTable.push(localStorage.getItem("winners"));  // zapisanie w tablicy obecnych zapisanych wyników
+    winnersTable.unshift(`${playerName} ${player.money}`); // wepchnięcie na początek obecnej wygranej
+    localStorage.setItem("winners", `${winnersTable}`);  // zapisanie w localStorage wyniku
 }
 
 function loadResult() {
-    document.getElementById("results").innerHTML = localStorage.getItem("winners");
+    document.getElementById("results").innerHTML = localStorage.getItem("winners"); // wyświeltnie wyników w przeglądarce
 }
 
 
